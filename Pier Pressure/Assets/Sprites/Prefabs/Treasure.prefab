@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1082341549887826180}
   - component: {fileID: 1082341549887826183}
   - component: {fileID: 1082341549887826182}
+  - component: {fileID: -7416369599350163829}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Untagged
@@ -130,3 +131,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7416369599350163829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082341549887826177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12345c739c6072f47b9c5b30fd72f1c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 0
