@@ -10,8 +10,8 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         scoreText = GameObject.FindObjectOfType<Text>();
-         
+         //scoreText = GameObject.FindObjectOfType<Text>();
+         scoreText = GameObject.FindGameObjectsWithTag("Score");
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class Score : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag.Equals ("Player"))
+        if(col.gameObject.tag.Equals ("Treasure"))
         {
               points += 1;
               col.gameObject.SetActive(false);
