@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     public float Acceleration = 5.0f;
     public float TurnRate = 90.0f;
     public float brakeSpeed = 2.0f;
+    public bool HasBraked = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,10 +46,12 @@ public class Movement : MonoBehaviour
             {
                 Velocity = Velocity.normalized * MaxVelocity;
             }
+            HasBraked = false;
         }
         //Backward
         if (Input.GetKey(KeyCode.S))
         {
+            
             Velocity /= 1.0f + (brakeSpeed * 0.01f);
             if ((Velocity.x <= 0.001f && Velocity.x > 0.0f) || (Velocity.x >= -0.001f && Velocity.x < 0.0f))
             {
@@ -58,6 +61,18 @@ public class Movement : MonoBehaviour
             if ((Velocity.y <= 0.001f && Velocity.y > 0.0f) || (Velocity.y >= -0.001f && Velocity.y < 0.0f))
             {
                 Velocity = new Vector3(Velocity.x, 0.0f, 0.0f);
+            }
+            if (Velocity.sqrMagnitude <= 0.001f && HasBraked == false)
+            {
+                HasBraked = true;
+            }
+            if (HasBraked == true)
+            {
+                Velocity = -(transform.up * Acceleration * Time.deltaTime) / 2;
+                if (Velocity.sqrMagnitude <= -(MaxVelocity * MaxVelocity))
+                {
+                    Velocity = -(Velocity.normalized * MaxVelocity) / 2;
+                }
             }
         }
         //Drag Effect
