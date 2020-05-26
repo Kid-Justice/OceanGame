@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     private Text scoreText;
+    GameObject[] ObjWithTag;
     public int points = 0;
     // Start is called before the first frame update
     void Start()
     {
-         //scoreText = GameObject.FindObjectOfType<Text>();
-         scoreText = GameObject.FindGameObjectsWithTag("Score");
+        //scoreText = GameObject.FindObjectOfType<Text>();
+        ObjWithTag = GameObject.FindGameObjectsWithTag("Score");
+        scoreText = ObjWithTag[0].GetComponent<Text>();
     }
 
     // Update is called once per frame
