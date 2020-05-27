@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Evan.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/main Menu.unity
     guid: 7a4aefb3c933bb8429aae84a1b9e2cbf
@@ -18,9 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Controls.unity
     guid: 10dcb72b67ed2bb4daed946e59f88eec
   - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 27ad3ce10ef9ccd48aea6913740d2563
-  - enabled: 1
     path: Assets/Scenes/Options.unity
     guid: 6672b5b9f40ae024991ff57235f95167
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 3aca12f8a45f54849b4a7db4d8dbce57
   m_configObjects: {}
