@@ -7,6 +7,8 @@ TagManager:
   - Treasure
   - Score
   - Health
+  - Gas
+  - GasCan
   layers:
   - Default
   - TransparentFX

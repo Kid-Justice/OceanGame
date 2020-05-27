@@ -8,10 +8,12 @@ public class Health : MonoBehaviour
 {
     public int healthBar = 3; 
     private Text healthText;
+    GameObject[] ObjWithTag;
     // Start is called before the first frame update
     void Start()
     {
-         healthText = GameObject.FindObjectOfType<Text>();
+        ObjWithTag = GameObject.FindGameObjectsWithTag("Health");
+        healthText = ObjWithTag[0].GetComponent<Text>();
     }
 
     // Update is called once per frame
