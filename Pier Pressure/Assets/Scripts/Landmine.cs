@@ -22,7 +22,7 @@ public class Landmine : MonoBehaviour
         if (collision.GetComponent<Health>() != null)
         {
             //collision.GetComponent<Health>().health -= damage;
-            GameObject Explode = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
+            //GameObject Explode = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
