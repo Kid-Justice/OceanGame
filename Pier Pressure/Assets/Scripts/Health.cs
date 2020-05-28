@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
     {
         healthText.text = " " + healthBar; 
     }
-      private void OnTriggerEnter2D(Collider2D col)
+      public void OnTriggerEnter2D(Collider2D col)
       {
            if(col.gameObject.tag.Equals("Mine"))
            {

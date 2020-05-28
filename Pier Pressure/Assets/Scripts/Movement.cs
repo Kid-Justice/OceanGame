@@ -10,6 +10,9 @@ public class Movement : MonoBehaviour
     public float TurnRate = 90.0f;
     public float brakeSpeed = 2.0f;
     public bool HasBraked = true;
+    public GameObject MovingSound;
+    public float timer = 0f;
+    GameObject[] MoveSounds;
   
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,10 @@ public class Movement : MonoBehaviour
     {
         rotateSub();
         moveSub();
+        if (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+        }
     }
     void rotateSub()
     {
@@ -36,7 +43,7 @@ public class Movement : MonoBehaviour
         }
         transform.Rotate(new Vector3(0.0f, 0.0f, 1.0f), rotationDelta);
     }
-    void moveSub()
+    public void moveSub()
     {
         transform.position += Velocity;
         //Forward
@@ -87,6 +94,23 @@ public class Movement : MonoBehaviour
             if ((Velocity.y <= 0.001f && Velocity.y > 0.0f) || (Velocity.y >= -0.001f && Velocity.y < 0.0f))
             {
                 Velocity = new Vector3(Velocity.x, 0.0f, 0.0f);
+            }
+        }
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        {
+            if (timer <= 0f)
+            {
+                Instantiate(MovingSound, transform.position, Quaternion.identity);
+                timer = 2f;
+            }
+        }
+        else
+        {
+            timer = 0f;
+            MoveSounds = GameObject.FindGameObjectsWithTag("MoveSound");
+            for (int i = 0; i < MoveSounds.Length; i++)
+            {
+                Destroy(MoveSounds[i]);
             }
         }
     }

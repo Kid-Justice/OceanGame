@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7272540198233452316}
   - component: {fileID: 7272540198233452317}
+  - component: {fileID: -8346022468853723570}
   m_Layer: 0
   m_Name: MovingSound
-  m_TagString: Untagged
+  m_TagString: MoveSound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,3 +128,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8346022468853723570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272540198233452318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6773bfde515de4d9c009fa102761d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeTillDestroy: 2

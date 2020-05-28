@@ -9,6 +9,7 @@ TagManager:
   - Health
   - Gas
   - GasCan
+  - MoveSound
   layers:
   - Default
   - TransparentFX
