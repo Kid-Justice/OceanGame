@@ -10,10 +10,10 @@ public class Movement : MonoBehaviour
     public float TurnRate = 90.0f;
     public float brakeSpeed = 2.0f;
     public bool HasBraked = true;
+    //Audio
     public GameObject MovingSound;
     public float timer = 0f;
     GameObject[] MoveSounds;
-  
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +25,7 @@ public class Movement : MonoBehaviour
     {
         rotateSub();
         moveSub();
+        //audio
         if (timer > 0f)
         {
             timer -= Time.deltaTime;

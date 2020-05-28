@@ -9,6 +9,9 @@ public class Health : MonoBehaviour
     public int healthBar = 3; 
     private Text healthText;
     GameObject[] ObjWithTag;
+    //audio
+    public GameObject DamageSound;
+    public float spawnTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,19 +23,29 @@ public class Health : MonoBehaviour
     void Update()
     {
         healthText.text = " " + healthBar; 
+        //audio
+        if (spawnTimer > 0f)
+        {
+            spawnTimer -= Time.deltaTime;
+        }
     }
-      public void OnTriggerEnter2D(Collider2D col)
-      {
-           if(col.gameObject.tag.Equals("Mine"))
-           {
-                healthBar -= 1;
-                PlayerPrefs.SetInt("health", healthBar);
-		   }
-           if(healthBar == 0)
-           {
-                SceneManager.LoadScene("End Screen");        
-         
-		   }
 
-	  }
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag.Equals("Mine"))
+        {
+            healthBar -= 1;
+            PlayerPrefs.SetInt("health", healthBar);
+            //audio
+            if (spawnTimer <= 0f)
+            {
+                Instantiate(DamageSound, transform.position, Quaternion.identity);
+                spawnTimer = 2f;
+            }
+		}
+        if(healthBar == 0)
+        {
+            SceneManager.LoadScene("End Screen");        
+		}
+    }
 }

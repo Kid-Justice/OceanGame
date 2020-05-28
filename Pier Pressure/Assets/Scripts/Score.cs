@@ -8,6 +8,9 @@ public class Score : MonoBehaviour
     private Text scoreText;
     GameObject[] ObjWithTag;
     public int points = 0;
+    //audio
+    public GameObject TreasureSound; 
+    public float spawnTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +23,13 @@ public class Score : MonoBehaviour
     void Update()
     {
         scoreText.text = " " + points; 
+        //audio
+        if (spawnTimer > 0f)
+        {
+            spawnTimer -= Time.deltaTime;
+        }
     }
-    private void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.tag.Equals ("Treasure"))
         {
@@ -29,6 +37,12 @@ public class Score : MonoBehaviour
               col.gameObject.SetActive(false);
 
               PlayerPrefs.SetInt("score", points);
+              //audio
+              if (spawnTimer <= 0f)
+              {
+                  Instantiate(TreasureSound, transform.position, Quaternion.identity);
+                  spawnTimer = 2f;
+              }
 		}
 
 	}

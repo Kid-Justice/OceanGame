@@ -10,6 +10,7 @@ TagManager:
   - Gas
   - GasCan
   - MoveSound
+  - Rock
   layers:
   - Default
   - TransparentFX
