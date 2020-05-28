@@ -42,9 +42,6 @@ public class Movement : MonoBehaviour
         //Forward
         if (Input.GetKey(KeyCode.W))
         {
-            //Audio
-            audioSource.PlayOneShot(MovingSFX); 
-
             Velocity = transform.up * Acceleration * Time.deltaTime;
             if (Velocity.sqrMagnitude >= (MaxVelocity * MaxVelocity))
             {
@@ -55,9 +52,6 @@ public class Movement : MonoBehaviour
         //Backward
         if (Input.GetKey(KeyCode.S))
         {
-            //Audio
-            audioSource.PlayOneShot(MovingSFX);
-
             Velocity /= 1.0f + (brakeSpeed * 0.01f);
             if ((Velocity.x <= 0.001f && Velocity.x > 0.0f) || (Velocity.x >= -0.001f && Velocity.x < 0.0f))
             {
