@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5350487827689070318}
   - component: {fileID: 5350487827689070317}
-  - component: {fileID: 5350487827689070316}
   - component: {fileID: 5350487827689070307}
   - component: {fileID: 5350487828150785750}
   - component: {fileID: 5350487828150785751}
   - component: {fileID: 5350487828150785752}
   - component: {fileID: 5350487828150785753}
+  - component: {fileID: 7218744391731999140}
+  - component: {fileID: 2246378954104121270}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 26c9a98c41bd87b44afd16f852e8510a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 50f7e3114ed47c64cb271921f8be319d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,32 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5350487827689070316
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5350487827689070306}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.125, y: 1.125}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &5350487827689070307
 Rigidbody2D:
   serializedVersion: 4
@@ -148,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxVelocity: 1
   Velocity: {x: 0, y: 0, z: 0}
-  Acceleration: 15
+  Acceleration: 30
   TurnRate: 90
   brakeSpeed: 2
   HasBraked: 1
@@ -168,6 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
+  TreasureSound: {fileID: 1131790645330659968, guid: d9b76d6ccc987e24f858c6507941ace6,
+    type: 3}
+  spawnTimer: 0
 --- !u!114 &5350487828150785752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: 3
+  DamageSound: {fileID: 2538703485416046682, guid: 52d75efea1db9974eb4bd989f90cb388,
+    type: 3}
+  spawnTimer: 0
 --- !u!114 &5350487828150785753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,3 +175,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 30
+  GasCanSound: {fileID: 5610047500459879780, guid: f80a2a7b0f41ab148b7fe5fa0af2da4e,
+    type: 3}
+  spawnTimer: 0
+--- !u!114 &7218744391731999140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350487827689070306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293f8910fa0461e41884ab1c55244b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTimer: 0
+  CollisionSound: {fileID: 1167458211933913112, guid: 360c909edf21af94382c05e976f7cf64,
+    type: 3}
+--- !u!60 &2246378954104121270
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350487827689070306}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.125, y: 1.125}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.18505962, y: 0.55579925}
+      - {x: -0.3816872, y: 0.35353422}
+      - {x: -0.37723288, y: -0.44950563}
+      - {x: -0.17870739, y: -0.4468595}
+      - {x: -0.1314527, y: -0.5625}
+      - {x: 0.118050896, y: -0.5625}
+      - {x: 0.20818533, y: -0.43956327}
+      - {x: 0.38847658, y: -0.43802646}
+      - {x: 0.38737413, y: 0.36083502}
+      - {x: 0.17835872, y: 0.55579925}

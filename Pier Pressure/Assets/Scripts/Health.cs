@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public int healthBar = 3; 
-    private Text healthText;
+    public int healthBar = 3;
+    public int MaxHealth = 3;
     GameObject[] ObjWithTag;
     //audio
     public GameObject DamageSound;
@@ -15,14 +15,11 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ObjWithTag = GameObject.FindGameObjectsWithTag("Health");
-        healthText = ObjWithTag[0].GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthText.text = " " + healthBar; 
         //audio
         if (spawnTimer > 0f)
         {
