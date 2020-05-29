@@ -25,7 +25,7 @@ public class Scanning : MonoBehaviour
     {
         if(col.gameObject.tag.Equals ("POI"))
         {
-              if(Input.GetKey)
+              
 		}
 	}
 }
