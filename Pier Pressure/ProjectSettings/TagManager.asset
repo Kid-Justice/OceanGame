@@ -12,6 +12,7 @@ TagManager:
   - MoveSound
   - Rock
   - HighScore
+  - POI
   layers:
   - Default
   - TransparentFX

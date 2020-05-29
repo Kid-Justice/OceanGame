@@ -25,6 +25,10 @@ public class Health : MonoBehaviour
         {
             spawnTimer -= Time.deltaTime;
         }
+        if(healthBar == 0)
+        {
+            SceneManager.LoadScene("End Screen");        
+		}
     }
 
     public void OnTriggerEnter2D(Collider2D col)
@@ -40,9 +44,6 @@ public class Health : MonoBehaviour
                 spawnTimer = 2f;
             }
 		}
-        if(healthBar == 0)
-        {
-            SceneManager.LoadScene("End Screen");        
-		}
+        
     }
 }

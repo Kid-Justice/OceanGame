@@ -17,11 +17,13 @@ public class Score : MonoBehaviour
         //scoreText = GameObject.FindObjectOfType<Text>();
         ObjWithTag = GameObject.FindGameObjectsWithTag("Score");
         scoreText = ObjWithTag[0].GetComponent<Text>();
+        points = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        PlayerPrefs.SetInt("score", points);
         scoreText.text = " " + points; 
         //audio
         if (spawnTimer > 0f)
@@ -36,7 +38,7 @@ public class Score : MonoBehaviour
               points += 1;
               col.gameObject.SetActive(false);
 
-              PlayerPrefs.SetInt("score", points);
+              //PlayerPrefs.SetInt("score", points);
               //audio
               if (spawnTimer <= 0f)
               {
