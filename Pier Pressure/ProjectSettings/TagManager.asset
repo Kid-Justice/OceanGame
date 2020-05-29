@@ -11,6 +11,7 @@ TagManager:
   - GasCan
   - MoveSound
   - Rock
+  - HighScore
   layers:
   - Default
   - TransparentFX
