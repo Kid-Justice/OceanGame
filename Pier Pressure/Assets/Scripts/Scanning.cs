@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class Scanning : MonoBehaviour
 {
+    public GameObject Treasure; 
     GameObject[] pOI; 
     public float scanTimer = 0f; 
+     
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +22,21 @@ public class Scanning : MonoBehaviour
         {
             scanTimer -= Time.deltaTime;
         }
+        if(scanTimer > 0f && scanTimer < 2f) 
+        {
+            Instantiate(Treasure, transform.position, Quaternion.identity);  
+            PlayerPrefs.SetFloat("scanTimer", scanTimer); 
+		}
     }
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.tag.Equals ("POI"))
         {
-              
+            if(Input.GetKeyDown("space"))
+            {
+                scanTimer += 5f;	
+		    }       
 		}
-	}
+    }
 }
+    
