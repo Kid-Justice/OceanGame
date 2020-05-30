@@ -18,6 +18,7 @@ public class Scanning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerPrefs.SetFloat("scanTimer", scanTimer); 
         if (scanTimer > 0f)
         {
             scanTimer -= Time.deltaTime;
@@ -25,7 +26,7 @@ public class Scanning : MonoBehaviour
         if(scanTimer > 0f && scanTimer < 2f) 
         {
             Instantiate(Treasure, transform.position, Quaternion.identity);  
-            PlayerPrefs.SetFloat("scanTimer", scanTimer); 
+           
 		}
     }
     void OnTriggerEnter2D(Collider2D col)

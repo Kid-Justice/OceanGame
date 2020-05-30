@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5936523007954749640}
   - component: {fileID: 5936523007954749641}
   - component: {fileID: 5936523007954749642}
+  - component: {fileID: 5931414471100568188}
   m_Layer: 0
   m_Name: PointOfInterest
   m_TagString: POI
@@ -145,3 +146,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &5931414471100568188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5936523007954749643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3345ad992c05174bbf9b90c2527494d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

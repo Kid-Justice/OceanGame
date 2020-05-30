@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5350487828150785753}
   - component: {fileID: 7218744391731999140}
   - component: {fileID: 2246378954104121270}
+  - component: {fileID: -3375549432645235609}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -159,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: 3
+  MaxHealth: 3
   DamageSound: {fileID: 2538703485416046682, guid: 52d75efea1db9974eb4bd989f90cb388,
     type: 3}
   spawnTimer: 0
@@ -175,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 30
+  MaxTimer: 30
   GasCanSound: {fileID: 5610047500459879780, guid: f80a2a7b0f41ab148b7fe5fa0af2da4e,
     type: 3}
   spawnTimer: 0
@@ -228,3 +231,18 @@ PolygonCollider2D:
       - {x: 0.38847658, y: -0.43802646}
       - {x: 0.38737413, y: 0.36083502}
       - {x: 0.17835872, y: 0.55579925}
+--- !u!114 &-3375549432645235609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350487827689070306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a8c759415ec4446981eb7e1c103d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Treasure: {fileID: 6392192882475172278, guid: 187420be4a16de1458370d62378e4f24,
+    type: 3}
+  scanTimer: 5
