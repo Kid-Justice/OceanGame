@@ -19,8 +19,6 @@ public class HealthBar : MonoBehaviour
     {
         health = healthScript.healthBar;
         maxhealth = healthScript.MaxHealth;
-        Debug.Log(health);
-        Debug.Log(health / maxhealth);
         transform.localScale = new Vector3(health/maxhealth, transform.localScale.y, transform.localScale.z);
     }
 }
