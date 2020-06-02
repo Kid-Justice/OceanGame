@@ -46,6 +46,19 @@ public class Score : MonoBehaviour
                   spawnTimer = 2f;
               }
 		}
+        if(col.gameObject.tag.Equals ("scanTreasure"))
+        {
+              points += 5;
+              col.gameObject.SetActive(false);
+
+              //PlayerPrefs.SetInt("score", points);
+              //audio
+              if (spawnTimer <= 0f)
+              {
+                  Instantiate(TreasureSound, transform.position, Quaternion.identity);
+                  spawnTimer = 2f;
+              }  
+		}
 
 	}
 }

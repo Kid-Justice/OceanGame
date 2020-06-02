@@ -15,6 +15,7 @@ TagManager:
   - POI
   - DepthCharge
   - ChunkMarker
+  - scanTreasure
   layers:
   - Default
   - TransparentFX
