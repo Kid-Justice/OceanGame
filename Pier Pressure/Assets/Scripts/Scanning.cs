@@ -5,38 +5,34 @@ using UnityEngine.UI;
 
 public class Scanning : MonoBehaviour
 {
-    public GameObject Treasure; 
     GameObject[] pOI; 
-    public float scanTimer = 0f; 
-     
+    float scanTimer = 0f; 
+    float timeTillScan = 5f; 
     // Start is called before the first frame update
     void Start()
     {
         pOI = GameObject.FindGameObjectsWithTag("POI");
+        PlayerPrefs.SetFloat("scanTimer", 0f); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerPrefs.SetFloat("scanTimer", scanTimer); 
-        if (scanTimer > 0f)
+        if (scanTimer < timeTillScan && scanTimer > 0f)
         {
-            scanTimer -= Time.deltaTime;
+            scanTimer += Time.deltaTime;
         }
-        if(scanTimer > 0f && scanTimer < 2f) 
+        if(scanTimer >= timeTillScan) 
         {
-            Instantiate(Treasure, transform.position, Quaternion.identity);  
-           
+            PlayerPrefs.SetFloat("scanTimer", scanTimer); 
 		}
+        PlayerPrefs.GetFloat("scanTimer", 0f); 
     }
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.tag.Equals ("POI"))
-        {
-            if(Input.GetKeyDown("space"))
-            {
-                scanTimer += 5f;	
-		    }       
+        { 
+            scanTimer += 1f;             
 		}
     }
 }

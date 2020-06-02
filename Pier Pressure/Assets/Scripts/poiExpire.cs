@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class poiExpire : MonoBehaviour
 {
-    float scanTimer; 
+    public GameObject Treasure; 
+    float scanTimer = 0f; 
+    float timeTillScan = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,12 +17,12 @@ public class poiExpire : MonoBehaviour
     void Update()
     {
         PlayerPrefs.GetFloat("scanTimer", 0f); 
-        if(scanTimer > 0f)
+        scanTimer = PlayerPrefs.GetFloat("scanTimer"); 
+
+        if(scanTimer >= timeTillScan)
         {
-            scanTimer -= Time.deltaTime;
-		}
-        if(scanTimer < 1f)
-        {
+            Instantiate(Treasure, transform.position, Quaternion.identity);  
+            PlayerPrefs.SetFloat("scanTimer", 0f);
             Destroy(gameObject);   
 		}
     }
