@@ -8,6 +8,9 @@ public class Scanning : MonoBehaviour
     GameObject[] pOI; 
     float scanTimer = 0f; 
     float timeTillScan = 5f; 
+    //audio
+    public GameObject ScanningSound; 
+    public float spawnTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +37,12 @@ public class Scanning : MonoBehaviour
         { 
             if(Input.GetKey(KeyCode.F))  
             {
-                scanTimer += 1f;        
+                scanTimer += 1f;     
+                if(spawnTimer <= 0f)
+                {
+                    Instantiate(ScanningSound, transform.position, Quaternion.identity);
+                    spawnTimer = 2f;
+                }
 			}
 		}
     }
