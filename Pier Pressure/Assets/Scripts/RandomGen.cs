@@ -52,48 +52,52 @@ public class RandomGen : MonoBehaviour
         if (!GeneratedOnStart)
         {
             GenerateChunk(new Vector2(0f, 0f));
+            GeneratedOnStart = true;
         }
-        bool IsInChunk = false;
-        for (int i = 0; i < ChunkMarkerInScene.Length && !IsInChunk; i++)
+        else
         {
-            Vector3 ChunkPos = ChunkMarkerInScene[i].transform.position;
-            if (player.transform.position.x >= ChunkPos.x - ChunkSize.x || player.transform.position.x <= ChunkPos.x + ChunkSize.x || player.transform.position.y >= ChunkPos.y - ChunkSize.y || player.transform.position.x <= ChunkPos.x + ChunkSize.x)
+            bool IsInChunk = false;
+            for (int i = 0; i < ChunkMarkerInScene.Length && !IsInChunk; i++)
             {
-                IsInChunk = true;
-            }
-        }
-        if (!IsInChunk)
-        {
-            Vector2 GetChunk = new Vector2(0f, 0f);
-            if (player.transform.position.x > 0)
-            {
-                while (player.transform.position.x < GetChunk.x)
+                Vector3 ChunkPos = ChunkMarkerInScene[i].transform.position;
+                if (player.transform.position.x >= ChunkPos.x - ChunkSize.x || player.transform.position.x <= ChunkPos.x + ChunkSize.x || player.transform.position.y >= ChunkPos.y - ChunkSize.y || player.transform.position.x <= ChunkPos.x + ChunkSize.x)
                 {
-                    GetChunk.x += ChunkSize.x;
+                    IsInChunk = true;
                 }
             }
-            else
+            if (!IsInChunk)
             {
-                while (player.transform.position.x > GetChunk.x)
+                Vector2 GetChunk = new Vector2(0f, 0f);
+                if (player.transform.position.x > 0)
                 {
-                    GetChunk.x -= ChunkSize.x;
+                    while (player.transform.position.x < GetChunk.x)
+                    {
+                        GetChunk.x += ChunkSize.x;
+                    }
                 }
-            }
-            if (player.transform.position.y > 0)
-            {
-                while (player.transform.position.y < GetChunk.y)
+                else
                 {
-                    GetChunk.x += ChunkSize.y;
+                    while (player.transform.position.x > GetChunk.x)
+                    {
+                        GetChunk.x -= ChunkSize.x;
+                    }
                 }
-            }
-            else
-            {
-                while (player.transform.position.y > GetChunk.y)
+                if (player.transform.position.y > 0)
                 {
-                    GetChunk.x -= ChunkSize.y;
+                    while (player.transform.position.y < GetChunk.y)
+                    {
+                        GetChunk.x += ChunkSize.y;
+                    }
                 }
+                else
+                {
+                    while (player.transform.position.y > GetChunk.y)
+                    {
+                        GetChunk.x -= ChunkSize.y;
+                    }
+                }
+                GenerateChunk(GetChunk);
             }
-            GenerateChunk(GetChunk);
         }
 
     }
