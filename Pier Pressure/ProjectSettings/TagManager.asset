@@ -13,6 +13,8 @@ TagManager:
   - Rock
   - HighScore
   - POI
+  - DepthCharge
+  - ChunkMarker
   layers:
   - Default
   - TransparentFX
