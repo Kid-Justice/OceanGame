@@ -32,7 +32,10 @@ public class Scanning : MonoBehaviour
     {
         if(col.gameObject.tag.Equals ("POI"))
         { 
-            scanTimer += 1f;             
+            if(Input.GetKey(KeyCode.F))  
+            {
+                scanTimer += 1f;        
+			}
 		}
     }
 }
