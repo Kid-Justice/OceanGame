@@ -16,6 +16,7 @@ TagManager:
   - DepthCharge
   - ChunkMarker
   - scanTreasure
+  - MMusic
   layers:
   - Default
   - TransparentFX
