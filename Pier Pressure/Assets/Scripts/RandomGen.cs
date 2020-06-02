@@ -15,18 +15,26 @@ public class RandomGen : MonoBehaviour
     public Vector2 ChunkSize = new Vector2(285f, 225f);
     public int MaxRocksPerChunk = 5;
     public int DepthChargesPerChunk = 8;
+    public int GasCansPerChunk = 3;
     public int TreasurePerChunk = 2;
     public int POIPerChunk = 1;
     GameObject[] rocksInScene;
     GameObject[] DCInScene;
+    GameObject[] GasCanInScene;
     GameObject[] TreasureInScene;
     GameObject[] POIInScene;
     GameObject[] ChunkMarkerInScene;
+    bool GeneratedOnStart = false;
 
     // Start is called before the first frame update
     void Start()
     {
-                
+        rocksInScene = GameObject.FindGameObjectsWithTag("Rock");
+        DCInScene = GameObject.FindGameObjectsWithTag("DepthCharge");
+        GasCanInScene = GameObject.FindGameObjectsWithTag("GasCan");
+        TreasureInScene = GameObject.FindGameObjectsWithTag("Treasure");
+        POIInScene = GameObject.FindGameObjectsWithTag("POI");
+        ChunkMarkerInScene = GameObject.FindGameObjectsWithTag("ChunkMarker");
     }
 
     // Update is called once per frame
@@ -35,11 +43,16 @@ public class RandomGen : MonoBehaviour
         //get objects
         rocksInScene = GameObject.FindGameObjectsWithTag("Rock");
         DCInScene = GameObject.FindGameObjectsWithTag("DepthCharge");
+        GasCanInScene = GameObject.FindGameObjectsWithTag("GasCan");
         TreasureInScene = GameObject.FindGameObjectsWithTag("Treasure");
         POIInScene = GameObject.FindGameObjectsWithTag("POI");
         ChunkMarkerInScene = GameObject.FindGameObjectsWithTag("ChunkMarker");
 
         //Generate
+        if (!GeneratedOnStart)
+        {
+            GenerateChunk(new Vector2(0f, 0f));
+        }
         bool IsInChunk = false;
         for (int i = 0; i < ChunkMarkerInScene.Length && !IsInChunk; i++)
         {
@@ -109,14 +122,204 @@ public class RandomGen : MonoBehaviour
                 bool Error = false;
                 for (int j = 0; j < rocksInScene.Length && !Error; j++)
                 {
-                    if ((RandomPos.x <= rocksInScene[j].transform.position.x + FixUnits(1, false) && RandomPos.x >= rocksInScene[j].transform.position.x - FixUnits(1, false)) && (RandomPos.y <= rocksInScene[j].transform.position.y + FixUnits(1, false) && RandomPos.y >= rocksInScene[j].transform.position.y - FixUnits(1, false)))
+                    if ((RandomPos.x <= rocksInScene[j].transform.position.x + FixUnits(1f, false) && RandomPos.x >= rocksInScene[j].transform.position.x - FixUnits(1f, false)) && (RandomPos.y <= rocksInScene[j].transform.position.y + FixUnits(1f, false) && RandomPos.y >= rocksInScene[j].transform.position.y - FixUnits(1f, false)))
                     {
-
+                        Error = true;
                     }
                 }
+                if ((RandomPos.x <= player.transform.position.x + FixUnits(3f, false) && RandomPos.x >= player.transform.position.x - FixUnits(3f, false)) && (RandomPos.y <= player.transform.position.y + FixUnits(3f, false) && RandomPos.y >= player.transform.position.y - FixUnits(3f, false)))
+                {
+                    Error = true;
+                }
                 Successful = !Error;
+                if (Successful)
+                {
+                    Instantiate(Rocks[Random.Range(0, 3)], RandomPos, Quaternion.identity);
+                }
             }
             rocksInScene = GameObject.FindGameObjectsWithTag("Rock");
+        }
+        //Depth Charge
+        int DCNumber = Random.Range(0, DepthChargesPerChunk);
+        for (int h = 0; h < RockNumber; h++)
+        {
+            bool Successful = false;
+            for (int i = 0; i < 5 && !Successful; i++)
+            {
+                Vector3 RandomPos = new Vector3(FixUnits(Random.Range(FixUnits(-ChunkSize.x + ChunkOrigin.x, true), FixUnits(ChunkSize.x + ChunkOrigin.x, true)), false), FixUnits(Random.Range(FixUnits(-ChunkSize.y + ChunkOrigin.y, true), FixUnits(ChunkSize.y + ChunkOrigin.y, true)), false), 0f);
+                bool Error = false;
+                for (int j = 0; j < rocksInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= rocksInScene[j].transform.position.x + FixUnits(1f, false) && RandomPos.x >= rocksInScene[j].transform.position.x - FixUnits(1f, false)) && (RandomPos.y <= rocksInScene[j].transform.position.y + FixUnits(1f, false) && RandomPos.y >= rocksInScene[j].transform.position.y - FixUnits(1f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                for (int j = 0; j < DCInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= DCInScene[j].transform.position.x + FixUnits(0.5f, false) && RandomPos.x >= DCInScene[j].transform.position.x - FixUnits(0.5f, false)) && (RandomPos.y <= DCInScene[j].transform.position.y + FixUnits(0.5f, false) && RandomPos.y >= DCInScene[j].transform.position.y - FixUnits(0.5f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                if ((RandomPos.x <= player.transform.position.x + FixUnits(3f, false) && RandomPos.x >= player.transform.position.x - FixUnits(3f, false)) && (RandomPos.y <= player.transform.position.y + FixUnits(3f, false) && RandomPos.y >= player.transform.position.y - FixUnits(3f, false)))
+                {
+                    Error = true;
+                }
+                Successful = !Error;
+                if (Successful)
+                {
+                    Instantiate(DepthCharge, RandomPos, Quaternion.identity);
+                }
+            }
+            DCInScene = GameObject.FindGameObjectsWithTag("DepthCharge");
+        }
+        //Gas Can
+        int GasCanNumber = Random.Range(0, GasCansPerChunk);
+        for (int h = 0; h < GasCanNumber; h++)
+        {
+            bool Successful = false;
+            for (int i = 0; i < 5 && !Successful; i++)
+            {
+                Vector3 RandomPos = new Vector3(FixUnits(Random.Range(FixUnits(-ChunkSize.x + ChunkOrigin.x, true), FixUnits(ChunkSize.x + ChunkOrigin.x, true)), false), FixUnits(Random.Range(FixUnits(-ChunkSize.y + ChunkOrigin.y, true), FixUnits(ChunkSize.y + ChunkOrigin.y, true)), false), 0f);
+                bool Error = false;
+                for (int j = 0; j < rocksInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= rocksInScene[j].transform.position.x + FixUnits(1f, false) && RandomPos.x >= rocksInScene[j].transform.position.x - FixUnits(1f, false)) && (RandomPos.y <= rocksInScene[j].transform.position.y + FixUnits(1f, false) && RandomPos.y >= rocksInScene[j].transform.position.y - FixUnits(1f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                for (int j = 0; j < DCInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= DCInScene[j].transform.position.x + FixUnits(0.5f, false) && RandomPos.x >= DCInScene[j].transform.position.x - FixUnits(0.5f, false)) && (RandomPos.y <= DCInScene[j].transform.position.y + FixUnits(0.5f, false) && RandomPos.y >= DCInScene[j].transform.position.y - FixUnits(0.5f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                for (int j = 0; j < GasCanInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= GasCanInScene[j].transform.position.x + FixUnits(0.5f, false) && RandomPos.x >= GasCanInScene[j].transform.position.x - FixUnits(0.5f, false)) && (RandomPos.y <= GasCanInScene[j].transform.position.y + FixUnits(0.5f, false) && RandomPos.y >= GasCanInScene[j].transform.position.y - FixUnits(0.5f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                if ((RandomPos.x <= player.transform.position.x + FixUnits(3f, false) && RandomPos.x >= player.transform.position.x - FixUnits(3f, false)) && (RandomPos.y <= player.transform.position.y + FixUnits(3f, false) && RandomPos.y >= player.transform.position.y - FixUnits(3f, false)))
+                {
+                    Error = true;
+                }
+                Successful = !Error;
+                if (Successful)
+                {
+                    Instantiate(GasCan, RandomPos, Quaternion.identity);
+                }
+            }
+            GasCanInScene = GameObject.FindGameObjectsWithTag("GasCan");
+        }
+        //Treasure
+        int TreasureNumber = Random.Range(0, TreasurePerChunk);
+        for (int h = 0; h < GasCanNumber; h++)
+        {
+            bool Successful = false;
+            for (int i = 0; i < 5 && !Successful; i++)
+            {
+                Vector3 RandomPos = new Vector3(FixUnits(Random.Range(FixUnits(-ChunkSize.x + ChunkOrigin.x, true), FixUnits(ChunkSize.x + ChunkOrigin.x, true)), false), FixUnits(Random.Range(FixUnits(-ChunkSize.y + ChunkOrigin.y, true), FixUnits(ChunkSize.y + ChunkOrigin.y, true)), false), 0f);
+                bool Error = false;
+                for (int j = 0; j < rocksInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= rocksInScene[j].transform.position.x + FixUnits(1f, false) && RandomPos.x >= rocksInScene[j].transform.position.x - FixUnits(1f, false)) && (RandomPos.y <= rocksInScene[j].transform.position.y + FixUnits(1f, false) && RandomPos.y >= rocksInScene[j].transform.position.y - FixUnits(1f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                for (int j = 0; j < DCInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= DCInScene[j].transform.position.x + FixUnits(0.5f, false) && RandomPos.x >= DCInScene[j].transform.position.x - FixUnits(0.5f, false)) && (RandomPos.y <= DCInScene[j].transform.position.y + FixUnits(0.5f, false) && RandomPos.y >= DCInScene[j].transform.position.y - FixUnits(0.5f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                for (int j = 0; j < GasCanInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= GasCanInScene[j].transform.position.x + FixUnits(0.5f, false) && RandomPos.x >= GasCanInScene[j].transform.position.x - FixUnits(0.5f, false)) && (RandomPos.y <= GasCanInScene[j].transform.position.y + FixUnits(0.5f, false) && RandomPos.y >= GasCanInScene[j].transform.position.y - FixUnits(0.5f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                for (int j = 0; j < TreasureInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= TreasureInScene[j].transform.position.x + FixUnits(0.5f, false) && RandomPos.x >= TreasureInScene[j].transform.position.x - FixUnits(0.5f, false)) && (RandomPos.y <= TreasureInScene[j].transform.position.y + FixUnits(0.5f, false) && RandomPos.y >= TreasureInScene[j].transform.position.y - FixUnits(0.5f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                if ((RandomPos.x <= player.transform.position.x + FixUnits(3f, false) && RandomPos.x >= player.transform.position.x - FixUnits(3f, false)) && (RandomPos.y <= player.transform.position.y + FixUnits(3f, false) && RandomPos.y >= player.transform.position.y - FixUnits(3f, false)))
+                {
+                    Error = true;
+                }
+                Successful = !Error;
+                if (Successful)
+                {
+                    Instantiate(Treasure, RandomPos, Quaternion.identity);
+                }
+            }
+            TreasureInScene = GameObject.FindGameObjectsWithTag("Treasure");
+        }
+        //POI
+        int POINumber = Random.Range(0, POIPerChunk);
+        for (int h = 0; h < POINumber; h++)
+        {
+            bool Successful = false;
+            for (int i = 0; i < 5 && !Successful; i++)
+            {
+                Vector3 RandomPos = new Vector3(FixUnits(Random.Range(FixUnits(-ChunkSize.x + ChunkOrigin.x, true), FixUnits(ChunkSize.x + ChunkOrigin.x, true)), false), FixUnits(Random.Range(FixUnits(-ChunkSize.y + ChunkOrigin.y, true), FixUnits(ChunkSize.y + ChunkOrigin.y, true)), false), 0f);
+                bool Error = false;
+                for (int j = 0; j < rocksInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= rocksInScene[j].transform.position.x + FixUnits(1f, false) && RandomPos.x >= rocksInScene[j].transform.position.x - FixUnits(1f, false)) && (RandomPos.y <= rocksInScene[j].transform.position.y + FixUnits(1f, false) && RandomPos.y >= rocksInScene[j].transform.position.y - FixUnits(1f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                for (int j = 0; j < DCInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= DCInScene[j].transform.position.x + FixUnits(0.5f, false) && RandomPos.x >= DCInScene[j].transform.position.x - FixUnits(0.5f, false)) && (RandomPos.y <= DCInScene[j].transform.position.y + FixUnits(0.5f, false) && RandomPos.y >= DCInScene[j].transform.position.y - FixUnits(0.5f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                for (int j = 0; j < GasCanInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= GasCanInScene[j].transform.position.x + FixUnits(0.5f, false) && RandomPos.x >= GasCanInScene[j].transform.position.x - FixUnits(0.5f, false)) && (RandomPos.y <= GasCanInScene[j].transform.position.y + FixUnits(0.5f, false) && RandomPos.y >= GasCanInScene[j].transform.position.y - FixUnits(0.5f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                for (int j = 0; j < TreasureInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= TreasureInScene[j].transform.position.x + FixUnits(0.5f, false) && RandomPos.x >= TreasureInScene[j].transform.position.x - FixUnits(0.5f, false)) && (RandomPos.y <= TreasureInScene[j].transform.position.y + FixUnits(0.5f, false) && RandomPos.y >= TreasureInScene[j].transform.position.y - FixUnits(0.5f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                for (int j = 0; j < POIInScene.Length && !Error; j++)
+                {
+                    if ((RandomPos.x <= POIInScene[j].transform.position.x + FixUnits(0.5f, false) && RandomPos.x >= POIInScene[j].transform.position.x - FixUnits(0.5f, false)) && (RandomPos.y <= POIInScene[j].transform.position.y + FixUnits(0.5f, false) && RandomPos.y >= POIInScene[j].transform.position.y - FixUnits(0.5f, false)))
+                    {
+                        Error = true;
+                    }
+                }
+                if ((RandomPos.x <= player.transform.position.x + FixUnits(3f, false) && RandomPos.x >= player.transform.position.x - FixUnits(3f, false)) && (RandomPos.y <= player.transform.position.y + FixUnits(3f, false) && RandomPos.y >= player.transform.position.y - FixUnits(3f, false)))
+                {
+                    Error = true;
+                }
+                Successful = !Error;
+                if (Successful)
+                {
+                    Instantiate(POI, RandomPos, Quaternion.identity);
+                }
+            }
+            POIInScene = GameObject.FindGameObjectsWithTag("POI");
         }
     }
 }
