@@ -60,43 +60,64 @@ public class RandomGen : MonoBehaviour
             for (int i = 0; i < ChunkMarkerInScene.Length && !IsInChunk; i++)
             {
                 Vector3 ChunkPos = ChunkMarkerInScene[i].transform.position;
-                if (player.transform.position.x >= ChunkPos.x - ChunkSize.x || player.transform.position.x <= ChunkPos.x + ChunkSize.x || player.transform.position.y >= ChunkPos.y - ChunkSize.y || player.transform.position.x <= ChunkPos.x + ChunkSize.x)
+                if (player.transform.position.x >= ChunkPos.x - (ChunkSize.x/2) && player.transform.position.x <= ChunkPos.x + (ChunkSize.x/2) && player.transform.position.y >= ChunkPos.y - (ChunkSize.y/2) && player.transform.position.y <= ChunkPos.y + (ChunkSize.y/2))
                 {
                     IsInChunk = true;
                 }
+
             }
+            Debug.Log(IsInChunk);
             if (!IsInChunk)
             {
                 Vector2 GetChunk = new Vector2(0f, 0f);
-                if (player.transform.position.x > 0)
+                if (Mathf.Abs(player.GetComponent<Movement>().Velocity.x) > Mathf.Abs(player.GetComponent<Movement>().Velocity.y))
                 {
-                    while (player.transform.position.x < GetChunk.x)
+                    if (player.transform.position.x > 0f)
                     {
-                        GetChunk.x += ChunkSize.x;
+                        while (player.transform.position.x > GetChunk.x)
+                        {
+                            GetChunk.x += ChunkSize.x * 2;
+                        }
+                    }
+                    else
+                    {
+                        while (player.transform.position.x < GetChunk.x)
+                        {
+                            GetChunk.x -= ChunkSize.x * 2;
+                            Debug.Log(GetChunk.x);
+                        }
                     }
                 }
                 else
                 {
-                    while (player.transform.position.x > GetChunk.x)
+                    if (player.transform.position.y > 0f)
                     {
-                        GetChunk.x -= ChunkSize.x;
+                        while (player.transform.position.y > GetChunk.y)
+                        {
+                            GetChunk.y += ChunkSize.y * 2;
+                        }
+                    }
+                    else
+                    {
+                        while (player.transform.position.y < GetChunk.y)
+                        {
+                            GetChunk.y -= ChunkSize.y * 2;
+                        }
                     }
                 }
-                if (player.transform.position.y > 0)
+                Debug.Log(GetChunk);
+                bool ChunkExists = false;
+                for (int i = 0; i < ChunkMarkerInScene.Length && !ChunkExists; i++)
                 {
-                    while (player.transform.position.y < GetChunk.y)
+                    if (ChunkMarkerInScene[i].transform.position.x == GetChunk.x && ChunkMarkerInScene[i].transform.position.y == GetChunk.y)
                     {
-                        GetChunk.x += ChunkSize.y;
+                        ChunkExists = true;
                     }
                 }
-                else
+                if (!ChunkExists)
                 {
-                    while (player.transform.position.y > GetChunk.y)
-                    {
-                        GetChunk.x -= ChunkSize.y;
-                    }
+                    GenerateChunk(GetChunk);
                 }
-                GenerateChunk(GetChunk);
             }
         }
 
@@ -115,6 +136,18 @@ public class RandomGen : MonoBehaviour
     void GenerateChunk(Vector2 ChunkOrigin)
     {
         Instantiate(ChunkMarker, new Vector3(ChunkOrigin.x, ChunkOrigin.y, 0f), Quaternion.identity);
+        if (GeneratedOnStart)
+        {
+            if (player.transform.position.x > (ChunkOrigin.x + ChunkSize.x) || player.transform.position.x < ( ChunkOrigin.x - ChunkSize.x))
+            {
+                Instantiate(ChunkMarker, new Vector3(player.transform.position.x, ChunkOrigin.y, 0f), Quaternion.identity);
+                Debug.Log("NewChunk");
+            }
+            else
+            {
+                Instantiate(ChunkMarker, new Vector3(ChunkOrigin.x, player.transform.position.x, 0f), Quaternion.identity);
+            }
+        }
         //Rocks
         int RockNumber = Random.Range(0, MaxRocksPerChunk);
         for (int h = 0; h < RockNumber; h++)
