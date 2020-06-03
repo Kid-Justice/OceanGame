@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float MaxVelocity = 0.2f;
+    float MVelocity = 1f; 
+    float MaxVelocity = 1f;
     public Vector3 Velocity = new Vector3(0.0f, 0.0f, 0.0f);
     public float Acceleration = 5.0f;
     public float TurnRate = 90.0f;
@@ -30,6 +31,9 @@ public class Movement : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
+        //Mine slow down effect
+        PlayerPrefs.GetFloat("MVelocity", 0.2f); 
+        MaxVelocity = MVelocity; 
     }
     void rotateSub()
     {

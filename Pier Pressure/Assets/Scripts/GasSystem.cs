@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GasSystem : MonoBehaviour
 {
-    public float Timer = 30.0f;
-    public float MaxTimer = 30.0f;
+    public float Timer = 45.0f;
+    public float MaxTimer = 45.0f;
     GameObject[] ObjWithTag;
     //audio 
     public GameObject GasCanSound; 
@@ -23,7 +23,7 @@ public class GasSystem : MonoBehaviour
     {
         Timer -= Time.deltaTime; 
 
-        if(Timer > 30.0f)
+        if(Timer > 45.0f)
         {
             Timer = MaxTimer;   
 		}
@@ -42,7 +42,7 @@ public class GasSystem : MonoBehaviour
     {
         if(col.gameObject.tag.Equals ("GasCan"))
         {
-            Timer += 30.0f; 
+            Timer += 45.0f; 
             col.gameObject.SetActive(false);
             //audio
             if (spawnTimer <= 0f)
