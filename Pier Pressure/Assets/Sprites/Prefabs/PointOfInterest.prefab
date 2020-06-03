@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a8c759415ec4446981eb7e1c103d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScanningSound: {fileID: 0}
+  spawnTimer: 0
 --- !u!50 &5936523007954749641
 Rigidbody2D:
   serializedVersion: 4
@@ -156,5 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3345ad992c05174bbf9b90c2527494d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 5350487827689070306, guid: f4133d9489d26cf42ac66012b56d4585, type: 3}
   scanTreasure: {fileID: 6362606351934488316, guid: 8f93be47bc1e12b4393beb3be37b7d8c,
     type: 3}
+  SonarSound: {fileID: 1729589064074123841, guid: 1f5e84a12c5f5034396c5c64d3649fe5,
+    type: 3}
+  spawnTimer: 0
