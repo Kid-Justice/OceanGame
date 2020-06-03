@@ -69,10 +69,27 @@ public class RandomGen : MonoBehaviour
             Debug.Log(IsInChunk);
             if (!IsInChunk)
             {
-                Vector2 GetChunk = new Vector2(0f, 0f);
+                Transform tMin = null;
+                float minDist = Mathf.Infinity;
+                Transform[] ChunkLocations = new Transform[ChunkMarkerInScene.Length];
+                for (int i = 0; i < ChunkMarkerInScene.Length; i++)
+                {
+                    ChunkLocations[i] = ChunkMarkerInScene[i].transform;
+                }
+                foreach (Transform t in ChunkLocations)
+                {
+                    float dist = Vector3.Distance(t.position, player.transform.position);
+                    if (dist < minDist)
+                    {
+                        tMin = t;
+                        minDist = dist;
+                    }
+                }
+                Vector2 NearestChunk = new Vector2(tMin.position.x, tMin.position.y);
+                Vector2 GetChunk = NearestChunk;
                 if (Mathf.Abs(player.GetComponent<Movement>().Velocity.x) > Mathf.Abs(player.GetComponent<Movement>().Velocity.y))
                 {
-                    if (player.transform.position.x > 0f)
+                    if (player.transform.position.x > NearestChunk.x)
                     {
                         while (player.transform.position.x > GetChunk.x)
                         {
@@ -90,7 +107,7 @@ public class RandomGen : MonoBehaviour
                 }
                 else
                 {
-                    if (player.transform.position.y > 0f)
+                    if (player.transform.position.y > NearestChunk.y)
                     {
                         while (player.transform.position.y > GetChunk.y)
                         {
@@ -136,7 +153,7 @@ public class RandomGen : MonoBehaviour
     void GenerateChunk(Vector2 ChunkOrigin)
     {
         Instantiate(ChunkMarker, new Vector3(ChunkOrigin.x, ChunkOrigin.y, 0f), Quaternion.identity);
-        if (GeneratedOnStart)
+        /*if (GeneratedOnStart)
         {
             if (player.transform.position.x > (ChunkOrigin.x + ChunkSize.x) || player.transform.position.x < ( ChunkOrigin.x - ChunkSize.x))
             {
@@ -147,7 +164,7 @@ public class RandomGen : MonoBehaviour
             {
                 Instantiate(ChunkMarker, new Vector3(ChunkOrigin.x, player.transform.position.x, 0f), Quaternion.identity);
             }
-        }
+        } */
         //Rocks
         int RockNumber = Random.Range(0, MaxRocksPerChunk);
         for (int h = 0; h < RockNumber; h++)
