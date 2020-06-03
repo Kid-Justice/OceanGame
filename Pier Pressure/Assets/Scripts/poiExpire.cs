@@ -5,7 +5,7 @@ using UnityEngine;
 public class poiExpire : MonoBehaviour
 {
     public GameObject player;   
-    int distance = 25;      
+    int distance = 100;      
 
     public GameObject scanTreasure; 
     float scanTimer = 0f; 
@@ -38,7 +38,7 @@ public class poiExpire : MonoBehaviour
         {
            timer += Time.deltaTime; 
 		}
-        if(timer >= 4)
+        if(timer >= 3)
         {
             Instantiate(SonarSound, transform.position, Quaternion.identity);   
             timer = 0f; 

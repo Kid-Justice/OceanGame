@@ -35,15 +35,12 @@ public class Scanning : MonoBehaviour
     {
         if(col.gameObject.tag.Equals ("POI"))
         { 
-            if(Input.GetKey(KeyCode.F))  
+            scanTimer += 1f;     
+            if(spawnTimer <= 0f)
             {
-                scanTimer += 1f;     
-                if(spawnTimer <= 0f)
-                {
-                    Instantiate(ScanningSound, transform.position, Quaternion.identity);
-                    spawnTimer = 2f;
-                }
-			}
+                Instantiate(ScanningSound, transform.position, Quaternion.identity);
+                spawnTimer = 2f;
+            }
 		}
     }
 }
