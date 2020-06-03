@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: -165}
+  m_AnchoredPosition: {x: 351, y: -145.15}
   m_SizeDelta: {x: 467.8, y: 197.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &133933988
@@ -313,8 +313,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -278.1, y: 52.5}
-  m_SizeDelta: {x: 467.8, y: 414.6}
+  m_AnchoredPosition: {x: -202.4, y: -18.625}
+  m_SizeDelta: {x: 619.2, y: 556.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &551526832
 MonoBehaviour:
@@ -347,8 +347,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "WASD to move\n\nCollide to Scan: \n\n- Scanning randomly gives an item
-    after a short period of time"
+  m_Text: "W - move forward\nS - move backwards\nA and D, turn left and right\n\nCollide
+    to Scan: \n- Scanning randomly gives an item after a short period of time"
 --- !u!222 &551526833
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -467,7 +467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 214, y: 198}
+  m_AnchoredPosition: {x: 319.5, y: 201.89996}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &812442043
@@ -1088,7 +1088,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -109, y: 117}
+  m_AnchoredPosition: {x: -89, y: 13}
   m_SizeDelta: {x: 80.8, y: 66.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1796872463
