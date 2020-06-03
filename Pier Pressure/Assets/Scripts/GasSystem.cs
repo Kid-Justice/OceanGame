@@ -42,7 +42,7 @@ public class GasSystem : MonoBehaviour
     {
         if(col.gameObject.tag.Equals ("GasCan"))
         {
-            Timer += 15.0f; 
+            Timer += 30.0f; 
             col.gameObject.SetActive(false);
             //audio
             if (spawnTimer <= 0f)
