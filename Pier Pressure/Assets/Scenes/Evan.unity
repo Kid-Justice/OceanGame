@@ -1068,6 +1068,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6392192882475172278, guid: 187420be4a16de1458370d62378e4f24,
         type: 3}
+    - target: {fileID: 5931414471100568188, guid: e3046ceb2666c5b4b9f3c5fd4b586778,
+        type: 3}
+      propertyPath: SonarSound
+      value: 
+      objectReference: {fileID: 1729589064074123841, guid: 1f5e84a12c5f5034396c5c64d3649fe5,
+        type: 3}
+    - target: {fileID: 5931414471100568188, guid: e3046ceb2666c5b4b9f3c5fd4b586778,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 5350487827689070306, guid: f4133d9489d26cf42ac66012b56d4585,
+        type: 3}
     - target: {fileID: 5936523007954749642, guid: e3046ceb2666c5b4b9f3c5fd4b586778,
         type: 3}
       propertyPath: m_IsTrigger
@@ -1668,3 +1680,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a8c759415ec4446981eb7e1c103d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScanningSound: {fileID: 0}
+  spawnTimer: 0
