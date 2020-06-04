@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1131790645330659982}
   - component: {fileID: 1131790645330659983}
   - component: {fileID: -8367017952843648906}
+  - component: {fileID: 6546771015560739079}
   m_Layer: 0
   m_Name: TreasureSound
   m_TagString: Untagged
@@ -141,3 +142,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeTillDestroy: 2
+--- !u!114 &6546771015560739079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131790645330659968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa6eaafced4fa14f8a9de6eb8a836cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

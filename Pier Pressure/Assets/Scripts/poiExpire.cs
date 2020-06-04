@@ -7,7 +7,7 @@ public class poiExpire : MonoBehaviour
     public GameObject player;   
     int distance = 200;      
 
-    public GameObject scanTreasure; 
+    public GameObject[] scanTreasure = new GameObject[3];
     float scanTimer = 0f; 
     float timeTillScan = 5f;
     //audio
@@ -29,7 +29,7 @@ public class poiExpire : MonoBehaviour
 
         if(scanTimer >= timeTillScan)
         {
-            Instantiate(scanTreasure, transform.position, Quaternion.identity);  
+            Instantiate(scanTreasure[Random.Range(0, 3)], transform.position, Quaternion.identity);  
             PlayerPrefs.SetFloat("scanTimer", 0f);
             Destroy(gameObject);   
 		}

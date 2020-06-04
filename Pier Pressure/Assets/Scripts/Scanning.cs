@@ -11,6 +11,7 @@ public class Scanning : MonoBehaviour
     //audio
     public GameObject ScanningSound; 
     public float spawnTimer = 0f;
+    public float visualTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +25,12 @@ public class Scanning : MonoBehaviour
         if (scanTimer < timeTillScan && scanTimer > 0f)
         {
             scanTimer += Time.deltaTime;
+            visualTimer += Time.deltaTime;
         }
         if(scanTimer >= timeTillScan) 
         {
-            PlayerPrefs.SetFloat("scanTimer", scanTimer); 
+            PlayerPrefs.SetFloat("scanTimer", scanTimer);
+            visualTimer = 0f;
 		}
         PlayerPrefs.GetFloat("scanTimer", 0f); 
     }

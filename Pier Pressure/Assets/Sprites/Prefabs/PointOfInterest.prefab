@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScanningSound: {fileID: 0}
   spawnTimer: 0
+  visualTimer: 0
 --- !u!50 &5936523007954749641
 Rigidbody2D:
   serializedVersion: 4
@@ -159,8 +160,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5350487827689070306, guid: f4133d9489d26cf42ac66012b56d4585, type: 3}
-  scanTreasure: {fileID: 6362606351934488316, guid: 8f93be47bc1e12b4393beb3be37b7d8c,
-    type: 3}
+  scanTreasure:
+  - {fileID: 6362606351934488316, guid: 8f93be47bc1e12b4393beb3be37b7d8c, type: 3}
+  - {fileID: 1119702611056013829, guid: bc1d80717a5dff046a468b6b3551e726, type: 3}
+  - {fileID: 8843416832566520610, guid: 6bafe6e97e9eb314885d68928a270be8, type: 3}
   SonarSound: {fileID: 1729589064074123841, guid: 1f5e84a12c5f5034396c5c64d3649fe5,
     type: 3}
   spawnTimer: 0

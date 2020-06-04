@@ -347,8 +347,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "W - move forward\nS - move backwards\nA and D, turn left and right\n\nCollide
-    to Scan: \n- Scanning randomly gives an item after a short period of time"
+  m_Text: "W - move forward\nS - move backwards\nA and D, turn left and right\nESC
+    - Pause the game\n\nCollide to Scan: \n- Scanning randomly gives an item after
+    a short period of time"
 --- !u!222 &551526833
 CanvasRenderer:
   m_ObjectHideFlags: 0
