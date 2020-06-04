@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     float MVelocity = 1f; 
-    float MaxVelocity = 1f;
+    public float MaxVelocity = 1f;
     public Vector3 Velocity = new Vector3(0.0f, 0.0f, 0.0f);
     public float Acceleration = 5.0f;
     public float TurnRate = 90.0f;
@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
             timer -= Time.deltaTime;
         }
         //Mine slow down effect
-        PlayerPrefs.GetFloat("MVelocity", 0.2f); 
+        MVelocity = PlayerPrefs.GetFloat("MVelocity", 0.2f); 
         MaxVelocity = MVelocity; 
     }
     void rotateSub()

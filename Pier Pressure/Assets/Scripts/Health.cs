@@ -17,15 +17,21 @@ public class Health : MonoBehaviour
     float slowDownTimer = 0f; 
     float slowedMaxVelocity = 0.2f; 
     float MaxVelocity = 1f;
+    public bool Slowed = false;
     // Start is called before the first frame update
     void Start()
     {
-
+        PlayerPrefs.SetFloat("MVelocity", MaxVelocity);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Slowed)
+        {
+            PlayerPrefs.SetFloat("MVelocity", slowedMaxVelocity);
+            slowDownTimer += Time.deltaTime;
+        }
         //audio
         if (spawnTimer > 0f)
         {
@@ -37,7 +43,9 @@ public class Health : MonoBehaviour
 		}
         if(slowDownTimer >= slowDown)
         {
-            PlayerPrefs.SetFloat("MVelocity", MaxVelocity);   
+            PlayerPrefs.SetFloat("MVelocity", MaxVelocity);
+            slowDownTimer = 0f;
+            Slowed = false;
 		}
     }
 
@@ -48,9 +56,6 @@ public class Health : MonoBehaviour
             healthBar -= 1;
             PlayerPrefs.SetInt("health", healthBar);
 
-            //mine slow down effect
-            PlayerPrefs.SetFloat("MVelocity", slowedMaxVelocity);  
-            slowDownTimer += Time.deltaTime; 
 
             //audio
             if (spawnTimer <= 0f)
