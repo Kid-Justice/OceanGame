@@ -5,7 +5,7 @@ using UnityEngine;
 public class poiExpire : MonoBehaviour
 {
     public GameObject player;   
-    int distance = 100;      
+    int distance = 200;      
 
     public GameObject scanTreasure; 
     float scanTimer = 0f; 
